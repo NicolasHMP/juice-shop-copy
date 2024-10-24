@@ -25,4 +25,4 @@ jobs:
       with:
        context: 
        push: true
-       tags: NicolasHMP/githubaction:latest
+       tags: nicolashmp/githubaction:latest
