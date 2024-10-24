@@ -72,10 +72,10 @@ YOUR_SECRET_NAME = DOCKERHUB_TOKEN / Secret = [Mettre ton secret dockerhub]
 YOUR_SECRET_NAME = DOCKERHUB_USERNAME / Secret = [Mettre ton username dockerhub]
 
 6. Gitclone ton fork sur ton PC 
-5. Connecte toi à ton répertoire : "git remote set-url origin https://[USERNAME]:[TOKEN_GITHUB]@github.com/[USERNAME]/juice-shop-copy.git"
+7. Connecte toi à ton répertoire : "git remote set-url origin https://[USERNAME]:[TOKEN_GITHUB]@github.com/[USERNAME]/juice-shop-copy.git"
 
-7. Ouvre VS Code, va dans Explorer, Workspace et ajoute le dossier juice-shop-copy.
-8. Crée le fichier "dockerhub.yml" dans le dossier .github/workflows et ajoute le code suivant:
+8. Ouvre VS Code, va dans Explorer, Workspace et ajoute le dossier juice-shop-copy.
+9. Crée le fichier "dockerhub.yml" dans le dossier .github/workflows et ajoute le code suivant:
 ```
 name: Build and push Docker image to dockerhub
 
@@ -106,20 +106,21 @@ jobs:
        push: true
        tags: [USERNAME_DOCKERHUB]/githubaction:latest
 ```
-9. Pense à bien modifier la dernière ligne avec ton username dockerhub
-10. Dans l'invite de commande (CMD) va dans ton dossier juice-shop-copy et tape les commandes suivante :
+
+10. Pense à bien modifier la dernière ligne avec ton username dockerhub
+11. Dans l'invite de commande (CMD) va dans ton dossier juice-shop-copy et tape les commandes suivante :
 ```
 git add .
 git commit -m "first commit"
 git push
 ```
-11. Exécute ensuite les commandes suivantes :
+12. Exécute ensuite les commandes suivantes :
 ```
 docker pull [USERNAME_DOCKERHUB]/juice-shop-copy
 docker run --rm -p 127.0.0.1:3000:3000 [USERNAME_DOCKERHUB]/juice-shop
 ```
 
-12. Va dans ton navigateur et cherche cette URL : "127.0.0.1:3000". Tu devras arriver sur le site juice-shop
+13. Va dans ton navigateur et écris cette URL : "127.0.0.1:3000". Tu devrais arriver sur le site juice-shop
 
 ## Documentation
 
