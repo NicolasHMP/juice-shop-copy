@@ -117,16 +117,22 @@ jobs:
       with:
        context: 
        push: true
-       tags: nicolashmp/githubaction:latest
+       tags: [USERNAME_DOCKERHUB]/githubaction:latest
 ```
 9. Pense à bien modifier la dernière ligne avec ton username dockerhub
 10. Dans l'invite de commande (CMD) va dans ton dossier juice-shop-copy et tape les commandes suivante :
+```
 git add .
 git commit -m "first commit"
 git push
+```
 11. Exécute ensuite les commandes suivantes :
+```
 docker pull [USERNAME_DOCKERHUB]/juice-shop-copy
-docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop
+docker run --rm -p 127.0.0.1:3000:3000 [USERNAME_DOCKERHUB]/juice-shop
+```
+
+12. Va dans ton navigateur et cherche cette URL : "127.0.0.1:3000". Tu devras arriver sur le site juice-shop
 
 ### Packaged Distributions
 
