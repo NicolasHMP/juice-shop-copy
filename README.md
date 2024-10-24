@@ -76,10 +76,57 @@ For a detailed introduction, full list of features and architecture overview ple
 ### Headmind Partners formation
 
 1. Install [Docker](https://www.docker.com)
-2. Crée toi un github
-3. Fork le github [JuiceShop](https://github.com/juice-shop/juice-shop) dans ton github à toi et appel le "juice-shop-copy"
-4. Gitclone ton fork sur ton PC
-5. Connecte toi à ton répertoire : "git remote set-url origin https://[USERNAME]:[TOKEN_GITHUB]@github.com/[USERNAME]/juice-shop-copy.git" 
+2. Crée toi un github et génère un Personnal Acces Token (Clique sur ta photo de profile => Developer settings => Personal access tokens => tokens classic). Coche toute les cases pour donner l'ensemble des droits à ton token (en réalité, c'est fortement déconseillé de faire ça).
+Conserve bien ton token, il te servieras par la suite.
+3. Crée toi un compte [Dockerhub](https://hub.docker.com/) et génère un token (clique sur ta photo de profil => account settings => Personal access tokens)
+4. Fork le github [JuiceShop](https://github.com/juice-shop/juice-shop) dans ton github à toi et appel le "juice-shop-copy"
+5. Va dans les settings => secrets and variables => actions et ajouter ces deux secrets :
+YOUR_SECRET_NAME = DOCKERHUB_TOKEN / Secret = [Mettre ton secret dockerhub]
+YOUR_SECRET_NAME = DOCKERHUB_USERNAME / Secret = [Mettre ton username dockerhub]
+
+6. Gitclone ton fork sur ton PC 
+5. Connecte toi à ton répertoire : "git remote set-url origin https://[USERNAME]:[TOKEN_GITHUB]@github.com/[USERNAME]/juice-shop-copy.git"
+
+7. Ouvre VS Code, va dans Explorer, Workspace et ajoute le dossier juice-shop-copy.
+8. Crée le fichier "dockerhub.yml" dans le dossier .github/workflows et ajoute le code suivant:
+
+name: Build and push Docker image to dockerhub
+
+on:
+  push:
+    branches: [ "master" ]
+    
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v4
+
+    - name: Login to dockerhub
+      uses: docker/login-action@v3
+      with:
+       username: ${{ secrets.DOCKERHUB_USERNAME }}
+       password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push to dockerhub
+      uses: docker/build-push-action@v5
+      with:
+       context: 
+       push: true
+       tags: nicolashmp/githubaction:latest
+
+9. Pense à bien modifier la dernière ligne avec ton username dockerhub
+10. Dans l'invite de commande (CMD) va dans ton dossier juice-shop-copy et tape les commandes suivante :
+git add .
+git commit -m "first commit"
+git push
+11. Exécute ensuite les commandes suivantes :
+docker pull [USERNAME_DOCKERHUB]/juice-shop-copy
+docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop
 
 ### Packaged Distributions
 
