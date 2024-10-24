@@ -89,7 +89,7 @@ YOUR_SECRET_NAME = DOCKERHUB_USERNAME / Secret = [Mettre ton username dockerhub]
 
 7. Ouvre VS Code, va dans Explorer, Workspace et ajoute le dossier juice-shop-copy.
 8. Crée le fichier "dockerhub.yml" dans le dossier .github/workflows et ajoute le code suivant:
-
+```
 name: Build and push Docker image to dockerhub
 
 on:
@@ -118,7 +118,7 @@ jobs:
        context: 
        push: true
        tags: nicolashmp/githubaction:latest
-
+```
 9. Pense à bien modifier la dernière ligne avec ton username dockerhub
 10. Dans l'invite de commande (CMD) va dans ton dossier juice-shop-copy et tape les commandes suivante :
 git add .
